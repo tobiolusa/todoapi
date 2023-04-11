@@ -3,6 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
 from .models import Task
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 """sumary_line
 
@@ -10,6 +12,17 @@ Keyword arguments:
 argument -- description
 Return: return_description
 """
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Snippets API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="contact@snippets.local"),
+      license=openapi.License(name="BSD License"),
+   ),
+)
 
 @api_view(['GET'])
 def apiOverview(request):
